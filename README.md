@@ -1,19 +1,21 @@
 # Game Viewport Sync
+
 UE4 Plugin for syncing the active Play In Editor session with the other Level Editor Viewports.
 
 [![Preview](https://i.imgur.com/5PEwR0p.gif)](https://gfycat.com/responsiblemealyheifer.gif)
 
 **Supported Unreal Versions:**
-
-4.24 - 4.25.
+Tested on 5.3, but should work since 5.0
 
 **Features:**
+
 - Simple Setup
-- Actor tracking/following with orbit camera controls 
+- Actor tracking/following with orbit camera controls
   - If the follow actor does not exist at level start up it will be automatically attached when it becomes available
 - Per viewport setting toggle
 
 **Getting Started:**
+
 - Add the plugin to your project ([GameDirectory]/Plugins/) folder (either via cloning or from the releases tab)
 - Open the editor.
 - Enable the Plugin in the Plugins Menu
@@ -29,11 +31,10 @@ You can follow an actor via the menu above, right clicking on the actor itself (
 
 [![RightClickContextMenuConfig](https://i.imgur.com/eKs9jPFl.gif)](https://i.imgur.com/eKs9jPF.gif)
 
-
 *Note:*
 
-Currently does not support persistent viewport settings. 
+Currently does not support persistent viewport settings.
 
 Follow the issue here:
 
-https://github.com/jackknobel/GameViewportSync/issues/1
+<https://github.com/jackknobel/GameViewportSync/issues/1>
