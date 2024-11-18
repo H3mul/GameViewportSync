@@ -423,11 +423,12 @@ void USyncViewportSubsystem::SetGlobalViewportFollowTargetOverride(AActor* Follo
 	GlobalFollowActorOverride = FollowTarget;
 }
 
-void USyncViewportSubsystem::SetViewportFollowActor(FLevelEditorViewportClient* const ViewportClient, const AActor* Actor)
+void USyncViewportSubsystem::SetViewportFollowActor(FLevelEditorViewportClient* const ViewportClient, AActor* Actor)
 {
 	if (FLiveViewportInfo* ViewportInfo = ViewportInfos.Find(ViewportClient))
 	{
 		ViewportInfo->FollowActor = Actor;
+
 
 		UE_LOG(LogViewportSync, Log, TEXT("Set the follow actor to %s"), Actor != nullptr ? *Actor->GetActorLabel() : TEXT("None"));
 

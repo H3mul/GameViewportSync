@@ -83,7 +83,7 @@ public:
 	void SetViewportSyncState(FLevelEditorViewportClient* ViewportClient, bool bState);
 	bool IsViewportSyncing(FLevelEditorViewportClient* ViewportClient) const;
 
-	void SetViewportFollowActor(FLevelEditorViewportClient* ViewportClient, const AActor* Actor);
+	void SetViewportFollowActor(FLevelEditorViewportClient* ViewportClient, AActor* Actor);
 	bool IsViewportFollowingActor(FLevelEditorViewportClient* ViewportClient, const AActor* Actor) const;
 
 	/* Set the override for all viewports to follow */
