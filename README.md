@@ -6,7 +6,7 @@ UE4 Plugin for syncing the active Play In Editor session with the other Level Ed
 
 **Supported Unreal Versions:**
 
-Tested on 5.3, but should work since 5.0
+Tested on 5.5, but should work since 5.0
 
 **Features:**
 
