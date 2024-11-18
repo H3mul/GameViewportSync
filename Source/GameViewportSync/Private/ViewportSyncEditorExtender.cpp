@@ -111,19 +111,28 @@ FLevelEditorViewportClient* FViewportSyncEditorExtender::GetActiveViewportClient
 
 TSharedRef<FExtender> FViewportSyncEditorExtender::OnExtendLevelViewportOptionMenu(const TSharedRef<FUICommandList> CommandList)
 {
-	FLevelEditorModule& LevelEditorModule			= FModuleManager::GetModuleChecked<FLevelEditorModule>(LevelEditorModuleName);
-	TSharedPtr<ILevelEditor> LevelEditor			= LevelEditorModule.GetLevelEditorInstance().Pin();
-	FLevelEditorViewportClient* ViewportClient		= static_cast<FLevelEditorViewportClient*>(&LevelEditor->GetActiveViewportInterface()->GetAssetViewportClient());
+	// Access safe reference:
+	// https://github.com/EpicGames/UnrealEngine/blob/1308e62273a620dd4584b830f6b32cd8200c2ad3/Engine/Plugins/Cameras/CameraShakePreviewer/Source/CameraShakePreviewer/Private/CameraShakePreviewerModule.cpp#L27
 
-	static const FName ExtensionPoint("LevelViewportViewportOptions");
-	
 	TSharedRef<FExtender> Extender = MakeShared<FExtender>();
-	Extender->AddMenuExtension(
-		ExtensionPoint,
-		EExtensionHook::After,
-		nullptr,
-		FMenuExtensionDelegate::CreateSP(this, &FViewportSyncEditorExtender::BuildMenuListForViewport, ViewportClient)
-	);
+
+	FLevelEditorModule&	LevelEditorModule = FModuleManager::LoadModuleChecked<FLevelEditorModule>(LevelEditorModuleName);
+	if (TSharedPtr<ILevelEditor> LevelEditor = LevelEditorModule.GetLevelEditorInstance().Pin())
+	{
+		if (TSharedPtr<SLevelViewport> ViewportInterface = LevelEditor->GetActiveViewportInterface())
+		{
+			FLevelEditorViewportClient* ViewportClient =
+				static_cast<FLevelEditorViewportClient*>(&ViewportInterface->GetAssetViewportClient());
+
+			static const FName ExtensionPoint("LevelViewportViewportOptions");
+
+			Extender->AddMenuExtension(
+				ExtensionPoint,
+				EExtensionHook::After,
+				nullptr,
+				FMenuExtensionDelegate::CreateSP(this, &FViewportSyncEditorExtender::BuildMenuListForViewport, ViewportClient));
+		}
+	}
 	return Extender;
 }
 

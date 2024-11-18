@@ -409,10 +409,6 @@ void USyncViewportSubsystem::RevertViewportSync(FLevelEditorViewportClient* cons
 	{
 		ViewportClient->RemoveRealtimeOverride(LOCTEXT("ViewportSync", "Viewport Sync"), true);
 	}
-	else
-	{
-		ViewportClient->RemoveRealtimeOverride();
-	}
 #endif
 }
 
